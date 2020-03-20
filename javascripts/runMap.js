@@ -35,7 +35,7 @@ function plotCountryChart(){
     confirmedByCountry = countryNames.map((c)=>countries[c].confirmed);
 
     var RecoveredByCountry = {
-    x: countryNames.slice(0,50),
+    x: countryNames.slice(0,20),
     y: recoveredByCountry,
     name: 'Recovered',
     type: "bar",
@@ -46,8 +46,8 @@ function plotCountryChart(){
     };
 
     var ConfirmedByCountry = {
-    x: countryNames.slice(0,50),
-    y: confirmedByCountry.slice(0,50),
+    x: countryNames.slice(0,20),
+    y: confirmedByCountry.slice(0,20),
     name: 'Confirmed',
     // xaxis: 'x3',
     // yaxis: 'y3',
@@ -59,8 +59,8 @@ function plotCountryChart(){
     };
 
     var DeathsByCountry = {
-    x: countryNames.slice(0,50),
-    y: deathsByCountry.slice(0,50),
+    x: countryNames.slice(0,20),
+    y: deathsByCountry.slice(0,20),
     name: 'Deaths',
     // xaxis: 'x2',
     // yaxis: 'y2',
@@ -71,7 +71,63 @@ function plotCountryChart(){
     },
     };
 
-    var data = [RecoveredByCountry,ConfirmedByCountry,DeathsByCountry];
+    var recMax =Math.max(...recoveredByCountry);
+    const recSum = recoveredByCountry.reduce((a, b) => a + b, 0);
+    const recAvg = (recSum / recoveredByCountry.length) || 0;
+
+    var deathMax = Math.max(...deathsByCountry);
+    const deathSum = deathsByCountry.reduce((a, b) => a + b, 0);
+    const deathAvg = (deathSum /deathsByCountry.length) || 0;
+
+    var confMax = Math.max(...confirmedByCountry);
+    const confSum = confirmedByCountry.reduce((a, b) => a + b, 0);
+    const confAvg = (confSum / confirmedByCountry.length) || 0;
+    
+
+    var normRec = recoveredByCountry.map(x=>1*(x/recMax));
+    var normDeath = deathsByCountry.map(x=>1*(x/deathMax));
+    var normConf = confirmedByCountry.map(x=>1*(x/confMax));
+
+    var RecoveredByCountryNORM = {
+        x: countryNames.slice(0,20),
+        y: normRec.slice(0,20),
+        name: 'Recovered (Normalized to 1)',
+        xaxis: 'x2',
+        yaxis: 'y2',
+        type: "bar",
+        opacity: 0.5,
+        marker: {
+            color: 'blue',
+        },
+        };
+    
+        var ConfirmedByCountryNORM = {
+        x: countryNames.slice(0,20),
+        y: normConf.slice(0,20),
+        name: 'Confirmed (Normalized to 1)',
+        xaxis: 'x2',
+        yaxis: 'y2',
+        type: "bar",
+        opacity: 0.6,
+        marker: {
+            color: 'orangered',
+        },
+        };
+    
+        var DeathsByCountryNORM = {
+        x: countryNames.slice(0,20),
+        y: normDeath.slice(0,20),
+        name: 'Deaths (Normalized to 1)',
+        xaxis: 'x2',
+        yaxis: 'y2',
+        type: "bar",
+        opacity: 0.6,
+        marker: {
+            color: 'darkred',
+        },
+        };
+
+    var data = [RecoveredByCountry,ConfirmedByCountry,DeathsByCountry,RecoveredByCountryNORM,ConfirmedByCountryNORM,DeathsByCountryNORM];
 
     var layout = {
         paper_bgcolor:'rgba(0,0,0,0)', 
@@ -86,6 +142,7 @@ function plotCountryChart(){
             t: 20,
             pad: 4
         },
+        grid: {rows: 1, columns: 2, pattern: 'independent'}
     }
     // var layout = {grid: {rows: 1, columns: 3, pattern: 'independent'}, paper_bgcolor:'rgba(0,0,0,0)', plot_bgcolor:"rgba(0,0,0,0)"}
     
