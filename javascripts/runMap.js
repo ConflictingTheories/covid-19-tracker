@@ -165,10 +165,10 @@ var data = {
 },
 
 link: {
-    source: [...deathsByCountry.slice(3).map((x,i)=>i+3),...confirmedByCountry.slice(3).map((x,i)=>i+3),...recoveredByCountry.map((x,i)=>i+3)],
-    target: [...deathsByCountry.slice(3).map((x,i)=>0),...confirmedByCountry.slice(3).map((x,i)=>1),...recoveredByCountry.map((x,i)=>2)],
-    value: [...deathsByCountry.slice(3).map((x,i)=>x),...confirmedByCountry.slice(3).map((x,i)=>x),...recoveredByCountry.map((x,i)=>x)],
-    label: [...countryNames,...countryNames,...countryNames]
+    source: [...deathsByCountry.map((x,i)=>i+3),...confirmedByCountry.map((x,i)=>i+3),...recoveredByCountry.map((x,i)=>i+3)],
+    target: [...deathsByCountry.map((x,i)=>0),...confirmedByCountry.map((x,i)=>1),...recoveredByCountry.map((x,i)=>2)],
+    value: [...deathsByCountry.map((x,i)=>x),...confirmedByCountry.map((x,i)=>x),...recoveredByCountry.map((x,i)=>x)],
+    // label: [...countryNames,...countryNames,...countryNames]
   }
 }
 
