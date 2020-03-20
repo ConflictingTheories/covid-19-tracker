@@ -83,7 +83,6 @@ function plotCountryChart(){
     const confSum = confirmedByCountry.reduce((a, b) => a + b, 0);
     const confAvg = (confSum / confirmedByCountry.length) || 0;
     
-
     var normRec = recoveredByCountry.map(x=>1*(x/recMax));
     var normDeath = deathsByCountry.map(x=>1*(x/deathMax));
     var normConf = confirmedByCountry.map(x=>1*(x/confMax));
@@ -148,6 +147,47 @@ function plotCountryChart(){
     
     
     Plotly.newPlot('chart', data, layout,{staticPlot: false,displayModeBar: false});
+
+var data = {
+  type: "sankey",
+  domain: {
+    x: [0,1],
+    y: [0,1]
+  },
+  node: {
+    pad: 15,
+    thickness: 15,
+    line: {
+      color: "black",
+      width: 0.5
+    },
+    label: ["Deaths", "Confirmed", "Recovered",...countryNames],
+},
+
+link: {
+    source: [...deathsByCountry.slice(3).map((x,i)=>i+3),...confirmedByCountry.slice(3).map((x,i)=>i+3),...recoveredByCountry.map((x,i)=>i+3)],
+    target: [...deathsByCountry.slice(3).map((x,i)=>0),...confirmedByCountry.slice(3).map((x,i)=>1),...recoveredByCountry.map((x,i)=>2)],
+    value: [...deathsByCountry.slice(3).map((x,i)=>x),...confirmedByCountry.slice(3).map((x,i)=>x),...recoveredByCountry.map((x,i)=>x)],
+    label: [...countryNames,...countryNames,...countryNames]
+  }
+}
+
+var data = [data]
+
+var layout = {
+    paper_bgcolor:'rgba(0,0,0)', 
+    plot_bgcolor:"rgba(0,0,0)",
+    autosize: true,
+    // width: 500,
+    height: 2096,
+    font: {
+        size: 10
+      },
+    grid: {rows: 1, columns: 2, pattern: 'independent'}
+}
+
+Plotly.newPlot('sankey', data, layout, {staticPlot: false,displayModeBar: false})
+
 }
 
 

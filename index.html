@@ -71,6 +71,12 @@
             <span id="deathRecDCnt"></span>
             &nbsp;&nbsp;
             <span style="color:white">
+                <a style="display:inline;" href="/chart.html">
+                    See Charts
+                </a>
+            </span>
+            &nbsp;&nbsp;
+            <span style="color:white">
                 <a style="display:inline;" href="/timeline.html">
                     See Timeline Playback
                 </a>
@@ -81,10 +87,6 @@
     </div>
     <div id="map"></div>
 
-    <div class="chart-container">
-        <div class="chart" id="chart"></div>
-    </div>
-    
     <button class="zoomAus button-flt" style="top: 110px;left: 51em; ">Australia</button>
     <button class="zoomSA button-flt" style="top: 110px;left: 41em; ">South America</button>
     <button class="zoomNA button-flt" style="top: 110px;left: 31em; ">North America</button>
@@ -157,8 +159,6 @@
     // Run on Start
     $('document').ready(function () {
         initMap().then(([map]) => {
-
-            plotCountryChart();
 
             function zoomAsia() {
                 let calgaryPosition = new google.maps.LatLng(49, 90);

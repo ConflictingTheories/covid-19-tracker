@@ -39,7 +39,9 @@
             style="display:inline; padding: 1em;font-size: 1em;vertical-align: text-bottom;color:darkred; font-weight: bold;">
             <div>
                 <span style="color:white">
-                    COVID-19
+                    <a style="display:inline;" href="/index.html">
+                        Back to Map
+                    </a>
                 </span>
                 &nbsp;&nbsp;
                 &nbsp;&nbsp;
@@ -77,13 +79,6 @@
                     D/(R+D):
                 </span>
                 <span id="deathRecDCnt"></span>
-                &nbsp;&nbsp;
-                <span style="color:white">
-                    <button onclick="playback()">Playback</button>
-                    <button id="pause" onclick="pause()">Pause</button>
-                    <button id="resume" onclick="resume()">Resume</button>
-                    <button onclick="reset()">Reset</button>
-                </span>
             </div>
             <!-- <div id="slider-range"></div> -->
         </span>
@@ -91,18 +86,13 @@
                 src="/images/powered-3.png" /></a>
     </div>
 
-    <div id="map"></div>
+    <div style="display:none;" id="map"></div>
 
-    <div class="chart-container">
+    <div class="" id="sankey"></div>
+
+    <div style="position:fixed" class="chart-container">
         <div class="chart" id="chart"></div>
     </div>
-
-    <button class="zoomAus button-flt" style="top: 110px;left: 51em; ">Australia</button>
-    <button class="zoomSA button-flt" style="top: 110px;left: 41em; ">South America</button>
-    <button class="zoomNA button-flt" style="top: 110px;left: 31em; ">North America</button>
-    <button class="zoomEU button-flt" style="top: 110px;left: 21em; ">Europe</button>
-    <button class="zoomAF button-flt" style="top: 110px;left: 11em; ">Africa</button>
-    <button class="zoomAsia button-flt" style="top: 110px;left: 1em; ">Asia</button>
 
     <!-- MODALS  -->
     <div id="vgModal" class="modal">
@@ -166,6 +156,7 @@
 </script>
 <script src="/javascripts/runMap.js"></script>
 <script src="/javascripts/playback.js"></script>
+<script src="/javascripts/fingerprint2.js"></script>
 <script>
 
     // Run on Start

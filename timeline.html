@@ -11,7 +11,7 @@
     <link rel='stylesheet' href='/stylesheets/chartist.css'>
     <!-- Google Maps -->
     <script
-        src="//maps.google.com/maps/api/js?libraries=geometry&key=<API-KEY-HERE>"></script>
+        src="//maps.google.com/maps/api/js?libraries=geometry&key=<API-KEY-HERE>>"></script>
 
     <!-- Plotly -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -39,7 +39,9 @@
             style="display:inline; padding: 1em;font-size: 1em;vertical-align: text-bottom;color:darkred; font-weight: bold;">
             <div>
                 <span style="color:white">
-                    COVID-19
+                    <a style="display:inline;" href="/index.html">
+                        Back to Map
+                    </a>
                 </span>
                 &nbsp;&nbsp;
                 &nbsp;&nbsp;
@@ -93,9 +95,9 @@
 
     <div id="map"></div>
 
-    <div class="chart-container">
+    <!-- <div class="chart-container">
         <div class="chart" id="chart"></div>
-    </div>
+    </div> -->
 
     <button class="zoomAus button-flt" style="top: 110px;left: 51em; ">Australia</button>
     <button class="zoomSA button-flt" style="top: 110px;left: 41em; ">South America</button>
@@ -172,7 +174,7 @@
     $('document').ready(function () {
         initMap().then(([map]) => {
 
-            plotCountryChart();
+            // plotCountryChart();
 
             function zoomAsia() {
                 let calgaryPosition = new google.maps.LatLng(49, 90);
